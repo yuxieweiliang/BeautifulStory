@@ -9,10 +9,9 @@ const publicPath = path.resolve(__dirname, 'dist');
 const config = {
   // 坑爹的输出文件顺序竟然是按照字母排序来的
   entry: {
-   /* 'js/app': './src/home',
-    'js/product': './src/product',*/
+    /* 'js/app': './src/home',
+     'js/product': './src/product',*/
     // 将所有公用的东西都放在一个文件里
-    common: ['react', 'react-dom']
   },
   // 输出文件
   output: {
@@ -71,9 +70,9 @@ const config = {
   },
   plugins: [
     // 输出一个资源映射的json 似乎没有什么卵用
-    new ManifestPlugin({
-      fileName: 'manifest.json'
-    }),
+    /*new ManifestPlugin({
+     fileName: 'manifest.json'
+     }),*/
     // 清除dist下的文件
     // 每次编译的时候，将之前编译的清空
     new CleanWebpackPlugin(['dist']),
@@ -82,16 +81,20 @@ const config = {
     // new webpack.ProvidePlugin({}),
 
     // 抽取公用脚本
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      filename: "js/common.js",
-      minChunks: Infinity,
-    }),
+    /*new webpack.optimize.CommonsChunkPlugin({
+     name: 'common',
+     filename: "js/common.js",
+     minChunks: Infinity,
+     }),*/
     /**
      * 启用模块热替换
      */
-    new webpack.HotModuleReplacementPlugin(),
-
+    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ],
 
   // 如果命令行中配置了--port 则会优先命令行
@@ -107,16 +110,16 @@ const config = {
   }
 };
 
-var pageArr = ['index', 'hospital', 'information', 'product']
+var pageArr = ['index', 'hospital', 'information', 'product', 'product-item']
 
 pageArr.map(item => {
   var plugins = new HtmlWebpackPlugin({
-      title: item,
-      filename: item + '.html',
-      template: 'index.html',
-      inject: 'body',
-      chunks: ['common', 'js/' + item]
-    })
+    title: item,
+    filename: item + '.html',
+    template: 'index.html',
+    inject: 'body',
+    chunks: ['common', 'js/' + item]
+  })
 
   config.entry['js/' + item] =  './src/' + item
   config.plugins.push(plugins)
