@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom'
 import RootView from '../../script/common'
 import func from './behavior'
-import OutView from '../OutView'
+import OutView from '../../component/OutView'
 import './style.less'
 
-export default class extends RootView {
+class IndexView extends RootView {
   constructor(props) {
     super(props)
     this.method._extend(this, func);
   }
   render() {
+    console.log(this.state)
     return(<OutView>
       <div className="wrapper wrapper-content animated fadeInRight">
 
@@ -76,3 +78,6 @@ export default class extends RootView {
     </OutView>)
   }
 }
+
+
+ReactDom.render(<IndexView/>, document.getElementById('root'));

@@ -22,23 +22,16 @@ export default {
   },
   componentWillMount() {
     let _this = this
-    console.log(this);
+    let id = window.location.href.split('?')[1]
     this.api.getToken().then(function(data) {
       _this.method.local.set('token', data.token)
-      _this._getBanner()
-      _this._getProducts()
+      _this._getProducts(id)
     })
   },
-  _getBanner: function() {
+  _getProducts: function(id) {
     let _this = this
-    _this.api.getBanner().then(res => {
-      _this.setState({banner: res.data})
-    })
-  },
-  _getProducts: function() {
-    let _this = this
-    _this.api.updateProduct().then(res => {
-      _this.setState({products: res.data})
+    _this.api.updateProduct(id).then(res => {
+      _this.setState({product: res.data})
     })
   },
 };

@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
 export default class extends Component {
   render() {
     return(<nav className="navbar-default navbar-static-side" role="navigation">
@@ -14,7 +8,7 @@ export default class extends Component {
         <ul className="nav" id="side-menu">
           <li className="nav-header">
             <div className="dropdown profile-element">
-              <span><img alt="image" className="img-circle"  src={require('../public/img/profile_small.jpg')} /></span>
+              <span><img alt="image" className="img-circle"  src={require('../../../public/img/profile_small.jpg')} /></span>
               <a data-toggle="dropdown" className="dropdown-toggle" href="#">
                       <span className="clear">
                      <span className="block m-t-xs"><strong className="font-bold">Beaut-zihan</strong></span>
@@ -31,7 +25,7 @@ export default class extends Component {
                 <li><a className="J_menuItem" href="mailbox.html">信箱</a>
                 </li>
                 <li className="divider"/>
-                <li><a href="login_v2.html">安全退出</a>
+                <li><a href="login.html">安全退出</a>
                 </li>
               </ul>
             </div>
@@ -40,15 +34,15 @@ export default class extends Component {
             </div>
           </li>
           <li>
-            <Link to="/">
+            <a href="/">
               <span className="nav-label">首页</span>
-            </Link>
-            <Link to="/product">
+            </a>
+            <a href="/product.html">
               <span className="nav-label">产品</span>
-            </Link>
-            <Link to="/enterprise">
+            </a>
+            <a href="/enterprise.html">
               <span className="nav-label">企业</span>
-            </Link>
+            </a>
             {/*<Link to="/recruit">
               <span className="nav-label">招聘</span>
             </Link>*/}

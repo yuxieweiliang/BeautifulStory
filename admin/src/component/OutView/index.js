@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import RootView from '../../script/common'
 import func from './behavior'
-import LeftMenuNav from '../../leftMenuNav'
+import LeftMenuNav from './leftMenuNav'
+import '../../../public/css/style.css'
 import './style.less'
 
 export default class extends RootView {

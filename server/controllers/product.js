@@ -119,7 +119,6 @@ async function saveProductImage(ctx) {
   // 文件上传路径
   let serverFilePath = path.resolve(ROOTS, 'public', 'img');
 
-  console.log(serverFilePath)
   // 上传文件事件
   let result = await uploadFile( ctx, {
     fileType: 'banner', // common or album
@@ -127,16 +126,19 @@ async function saveProductImage(ctx) {
   });
 
   let image = null
-
+  let url = null
   let product = await Product.findById(result.formData.id)
 
   if(result.success && !_.isEmpty(product)) {
-    let url = product.images.concat(result.fileName)
+    url = product.images.concat(result.fileName)
     image = await Product.update({_id: result.formData.id}, {$set:{images: url}})
     console.log(image)
   }
 
-  ctx.body = image
+  ctx.body = {
+    ...image,
+    url: config.root + result.fileName
+  }
 
 }
 

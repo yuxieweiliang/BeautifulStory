@@ -51,9 +51,10 @@ export default {
       })
   },
 
-  updateProduct: function () {
+  updateProduct: function (_id) {
+    const params = _id ? {_id} : null
 
-    return this.ajax.get({url: product.list})
+    return this.ajax.get({url: product.list, params})
       .then(function(data) {
 
         return data

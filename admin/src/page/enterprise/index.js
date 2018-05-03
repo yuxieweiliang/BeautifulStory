@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom'
 import RootView from '../../script/common'
-import { Link } from 'react-router-dom'
 import func from './behavior'
-import OutView from '../OutView'
+import OutView from '../../component/OutView'
 
-export default class extends RootView {
+class EnterpriseView extends RootView {
   constructor(props) {
     super(props)
     this.method._extend(this, func);
@@ -106,10 +106,9 @@ export default class extends RootView {
           </div>
         </div>
       </div>
-
-
-
       </div>
     </OutView>)
   }
 }
+
+ReactDom.render(<EnterpriseView/>, document.getElementById('root'));

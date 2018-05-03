@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom'
 import RootView from '../../script/common'
-import { Link } from 'react-router-dom'
 import func from './behavior'
-import OutView from '../OutView'
-export default class extends RootView {
+import OutView from '../../component/OutView'
+
+
+class ProductView extends RootView {
   constructor(props) {
     super(props)
     this.method._extend(this, func);
@@ -23,7 +25,7 @@ export default class extends RootView {
                 <h5>分类</h5>
                 <div className="ibox-tools">
                   <a className="collapse-link" data-toggle="modal" data-target="#addClass">
-                    <i className="fa fa-plus"></i>
+                    <i className="fa fa-plus"/>
                   </a>
                 </div>
               </div>
@@ -91,7 +93,7 @@ export default class extends RootView {
                             <td>{items.name}</td>
                             <td>{items.classify_name }</td>
                             <td>
-                              <Link to={`product-add?${items._id}`} className="btn btn-primary btn-sm">编辑</Link>
+                              <a href={`product-add.html?${items._id}`} className="btn btn-primary btn-sm">编辑</a>
                               <button onClick={e => this._productRemove(items)} className="btn btn-danger btn-sm">删除</button>
                             </td>
                           </tr>
@@ -108,7 +110,7 @@ export default class extends RootView {
           </div>
         </div>
 
-        <div className="modal fade" id="addClass" tabindex="-1" role="dialog" aria-labelledby="addClassLabel" aria-hidden="true">
+        <div className="modal fade" id="addClass" role="dialog" aria-labelledby="addClassLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -177,3 +179,4 @@ export default class extends RootView {
     </OutView>)
   }
 }
+ReactDom.render(<ProductView/>, document.getElementById('root'));

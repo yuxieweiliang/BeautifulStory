@@ -8,6 +8,7 @@ export default {
    * 如果找不到 token 则返回登陆页
    */
   componentWillMount: function() {
+/*
     let _this = this;
     let banner = []
     let token = this.method.local.get('token');
@@ -29,6 +30,7 @@ export default {
       _this.setState({banner})
       // console.log(_this.state.banner)
     })
+*/
 
   },
 

@@ -39,6 +39,15 @@ export default {
     })
   },
   _changeMenu(menu) {
+    if(+menu.key === 0) {
+      window.location.href = '/'
+    } else if(+menu.key === 1) {
+      window.location.href = '/product.html'
+    } else if(+menu.key === 2) {
+      window.location.href = '/information.html'
+    } else if(+menu.key === 3) {
+      window.location.href = '/hospital.html'
+    } else
     console.log(menu)
   }
 };
